@@ -1,0 +1,290 @@
+Justice Smith
+ju644888
+3218665
+
+DS A
+
+1.
+
+typedef struct GroupMember {
+    char * name;
+    int phoneNumber;
+} GroupMember;
+
+GroupMember * deleteGroup (GroupMember * group, int numMembers)
+{
+    int i;
+    
+    for (i = 0; i < numMembers; i++)
+        free(group[i].name);
+
+    free(group);
+
+    return NULL;
+}
+
+
+4min 00s
+
+2.
+typedef struct node {
+    int data;
+    struct node * next;
+} node;
+
+void markEven(node * head)
+{
+    node * temp = head;
+    
+    while (temp != NULL)
+    {
+        while ((temp != NULL) && (temp->data % 2 != 0))
+            temp = temp->next;
+            
+        if (temp != NULL)
+        {
+            // Creating insert
+            node * newNode = malloc(sizeof(node));
+            newNode->data = -1;            
+            newNode->next = temp->next;
+            temp->next = newNode;
+            temp = newNode;
+        }
+    }
+}
+
+12min 00s(+8min 00s)
+
+3.
+
+a.
+|   | | * | |   | 
+|   | | + | |   | 
+| ( | | ( | |   | 
+| * | | * | | * | 
+| + | | + | | + | 
+|___| |___| |___| 
+
+resulting postfix evaluation
+ABCD/EF*+*G*+
+
+b.
+maximum stack depth is 10
+no, because the first call is not a recursive call, so the # of rec. calls is 9
+
+23min 30s(+11min 30s)
+
+total: 23min 30s
+
+Justice Smith
+ju644888
+3218665
+
+DS B
+1.
+
+int countDiv(bstNode *root, int value)
+{
+    if (root == NULL || value == 0) return 0;
+    
+    int numDiv = countDiv(root->left, value) + countDiv(root->right, value);
+    
+    if((root->data % value) == 0)
+        return ++numDiv;
+        
+    return numDiv;        
+}
+
+31min 30s(+8min 00s)
+
+2.
+      100
+     /   \
+   90     98
+  /  \      
+60    71
+
+
+Insert 109 step 1:
+
+      100
+     /   \
+   90     98
+  /  \    / 
+60    71 109
+
+Insert 109 step 2:
+
+      100
+     /   \
+   90     109
+  /  \    / 
+60    71 98
+
+Insert 109 step 3:
+
+      109
+     /   \
+   90     100
+  /  \    / 
+60    71 98
+
+index | 1   | 2  | 3  | 4   | 5  | 6  |
+heap  | 109 | 60 | 90 | 100 | 71 | 98 |  // MUST REVIEW THIS. CRITICAL
+
+43min 00s(+11min 30s)
+
+       7
+     
+     
+       7
+         \
+          8 
+       
+       8
+     /   \
+    7     54    
+       
+           
+       8
+     /   \
+    7     54    
+         /
+       13
+       
+         
+       8
+     /   \
+    7     35    
+         /  \
+       13    54
+       
+       
+       35
+     /   \
+    8     54    
+   / \     \
+  7   13    66
+      
+
+       35
+     /    \
+    8      54    
+   / \    /  \
+  7  13  50   66
+      
+      
+       35
+     /    \
+    8      54    
+   / \    /  \
+  7  13  50   66
+     /
+    12
+ 
+ b.
+ 
+       35
+     /    \
+    12     54    
+   /  \   /  \
+  8   13 50   66
+  
+
+52min 10s(+9min 10s)
+
+total: 28min 40s :O
+
+Justice Smith
+ju644888
+3218665
+
+AL A
+1.
+best case runtime: O(n) 
+    it still has to check every other element against the first random guess, 
+    even when that random guess is the smallest and terminates the process.
+    
+worst-case runtime: O(n^2)
+    we want to maximize the size of list 1 to create a worst-case scenario. we
+    do this by repeatedly picking the largest element in the array, which will 
+    put all elements except that one in list 1. this makes a 1 + 2 + 3 
+    summation, which has a closed form of n, and stacked recursive calls that 
+    have a summation that resolves to a closed form of n as well. The product of
+    these operations makes an overall worst case runtime of O(n^2).
+
+1hr 03min 07s(+7min 57s)
+
+2.
+
+256ms = c * 640000*sqrt(640000)
+1ms/2000000 = c
+
+time = 1ms * 500 = 500ms
+
+algorithm will take 0.5 seconds to run
+
+1hr 08min 00s(+5min 07s)
+
+3.
+
+a. 2^(n + 1) + 2^n - 1
+
+b. 1024 + 512 - 1 = 1535
+
+1hr 19min 00s(+15min 53s)
+
+total: 24min 00s
+
+Justice Smith
+ju644888
+3218665
+
+DS B
+1.
+int * tmp = power(poly, len, exp/2, mod);
+int * prod = multiply(tmp, (len - 1) * exp/2 + 1, 
+                      tmp, (len - 1) * exp/2 + 1, mod);  
+
+
+int* tmp = power(poly, len, exp - 1, mod);
+int * prod = multiply(tmp, (len-1)*(exp-1)+1, poly, len, mod);
+
+
+1hr 34min 15s(+15min 15s)
+
+2.
+
+int cmp(student * a, student * b)
+{
+    if (strcmp(a->last, b->last) <= 0)
+        if (strcmp(a->first, b->first) <= 0)
+            if (a->ID < b->ID) return 0;
+    return 1;
+}
+
+int cmp(student * a, student * b)
+{
+    if (strcmp(a->last, b->last) != 0)
+        return strcmp(a->last, b->last);
+    
+    if (strcmp(a->first, b->first) != 0)
+        return strcmp(a->first, b->first);
+        
+    return a->ID - b->ID;
+}
+
+1hr 43min 30s(+9min 15s)
+
+3.
+
+
+2
+4
+32
+64
+256
+
+1hr 51min 52s(+30min 00s)
+
+

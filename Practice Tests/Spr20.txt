@@ -1,0 +1,196 @@
+Justice Smith
+ju644888
+3218665
+
+Spr20 Foundation Exam
+
+DSN A
+
+1.
+struct tv_show * delete_show_list(struct tv_show * show_list, int length)
+{
+    for (int i = 0; i < length; i++)
+        free(show_list[i].show_name);
+    
+    free(show_list);
+    
+    return NULL;    
+}
+
+2.
+3 12 5 7 19
+size = 5
+
+3.
+stack * reverseStack(stack * s)
+{
+    stack *newS = malloc(sizeof(stack));
+    
+    newS->top = NULL;
+    newS->size = 0;
+
+    while(!isEmpty(s))
+        push(newS, pop(s));
+    
+    return newS;
+}
+16min53s
+
+
+Justice Smith
+ju644888
+3218665
+
+DSN B
+
+1.
+int fsl(node * root)
+{
+    if (root == NULL)
+        return INT_MAX;
+    
+    if (root->left == NULL && root->right == NULL)
+        return root->data;
+        
+    int Lfsl = fsl(root->left);
+    int Rfsl = fsl(root->right);
+    
+    return ((Lfsl < Rfsl) ? Lfsl : Rfsl);
+}
+25min 01s(+8min 8s)
+
+2.
+a. hash("Not") = 19
+b. hash("Know") = 22
+c. hash("Bright") = 19
+d. hash("Moon") = 13
+e. hash("Now") = 22
+
+b.
+
+|Bright|-----|Know|Moon|-----|-----|Now|-----|-----|Not|
+
+33min 26s(+8min 25s)
+
+3.
+int numWordsWithPrefix(TrieNode * root, char * prefix)
+{
+    int length = strlen(prefix);
+    
+    for (int i = 0; i < length; i++)
+    {
+        if (root->children[prefix[i] - 'a'] == NULL)
+            return 0;
+        root = root->children[prefix[i] - 'a'];
+    }
+    
+    return root->numWords;
+}
+
+50min 12s (+16min 46s)
+    
+    
+Justice Smith
+ju644888
+3218665    
+
+ANL B
+1.
+worst-case: O(n^2) if the array is already in descending order
+best-case: O(n) if only the last element is larger
+
+1hr 05min 48s
+
+2.
+20*(1^20) * c = 10s
+20 * c = 10
+c = .5
+10*(2^10) * .5 = 5120s
+
+1hr 08min 26s(+2min 38s)
+
+3.
+k = 1 ||                                 T(n) = 2T(n/2) + 1     for all integers n > 1; T(1) = 1
+k = 2 || T(n) = 2[2T(n/2^2) + 1] + 1  == T(n) = 4T(n/4) + 3
+k = 3 || T(n) = 4[2T(n/8) + 1] + 3    == T(n) = 8T(n/8) + 7
+
+T(n) = 2^kT(n/(2^k)) + (2^k - 1)
+n/(2^k) = 1
+n = 2^k
+
+T(n) = nT(n/n) + (n - 1)
+T(n) = n + (n - 1), therefore the tight Big-Oh runtime is O(n)
+
+1hr 15min 04s(+6min 38s)
+
+Justice Smith
+ju644888
+3218665
+
+1.
+#define NUMROWS 10
+#define NULCOLS 12
+const int DR[] = {-1, 0, 0, 1};
+const int DC[] = {0, -1, 1, 0};
+
+int inbounds(int row, int col);
+
+void floodfill(int grid[][NUMCOLS], int flooded[][NUMCOLS], int row, int col)
+{
+    if (!inbounds(row, col)) return;
+    
+    flooded[row][col] = 1;    
+    
+    for (int i = 0; i < 4; i++)
+    {
+        int nextR = row + DR[i];
+        int nextC = col + DC[i];
+        
+        if (grid[nextR][nextC] < grid[row][col])
+            floodfill(grid, flooded, nextR, nextC);
+    }
+}
+
+1hr 29min 00s(+13min 56s)
+
+2.
+void swap(int * ptrA, int * ptrB);
+
+int partition(int array[], int low, int high)
+{
+    int lowPtr = low + 1, highPtr = high;
+    
+    while (lowPtr <= highPtr)
+    {
+        while (lowPtr <= high && array[lowPtr] <= array[low])
+            lowPtr++;
+            
+        while (highPtr >= low && array[highPtr] > array[low])
+            highPtr--;
+            
+        if (lowPtr < highPtr)
+            swap(&array[lowPtr], &array[highPtr]);
+    }
+    
+    swap(&array[low], &array[highPtr]);
+    return highPtr;
+}
+
+1 38 02
+
+ALN B 
+3.
+i.   0011 1000 |  
+     0001 0001    ==> 0011 1001 = 57
+   
+ii.  0010 1111 &  
+     0101 0011    ==> 0000 0011 = 3
+    
+iii. 0100 1111 ^
+     0010 0100    ==> 0110 1011 = 107
+     
+iv.  0000 1101<<3 ==> 0110 1000 = 104
+
+v.   1011 1011>>4 ==> 0000 1011 = 11
+
+1hr 47min 50s

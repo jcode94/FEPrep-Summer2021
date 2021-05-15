@@ -1,0 +1,210 @@
+Justice Smith
+ju644888
+3218665
+
+DS A
+
+1. 
+char ** make_grocery_list (FILE * ifp, int numItems)
+{
+    char buffer[128];
+    char ** list = NULL;
+    int i;
+    
+    list = (char **)malloc(numItems * sizeof(char*));
+    
+    for (i = 0; i < numItems; i++)
+    {
+        fscanf(ifp, "%s", buffer);
+        list[i] = (char*)malloc((strlen(buffer) + 1) * sizeof(char));
+        strcpy(list[i], buffer);
+    }
+    
+    return list;
+}
+
+2. 
+int dequeue(queue *thisQ)
+{
+    int dVal;
+    node * temp;
+    
+    // null Q or empty list
+    if (thisQ == NULL || thisQ->size == 0)
+        return 0;
+    
+    dVal = thisQ->head->data;
+    temp = thisQ->head;
+    thisQ->head = thisQ->head->next;
+    
+    if (size == 1) // one element
+        thisQ->tail = NULL;
+    
+    else // more than one element
+        thisQ->head->prev = NULL;
+    
+    free(temp);
+    thisQ->size--;
+    return dVal;
+}   
+
+
+
+3.
+|   |  |   |  |   | 
+|   |  |   |  |   |
+|   |  | ( |  |   |
+|   |  | ( |  |   |
+|   |  | - |  |   |
+|   |  | ( |  |   |
+| - |  | + |  | + |
+|___|  |___|  |___|
+
+resulting post-fix expression:
+(((AB*)C-)((D((EF*)G/)-)H+)+)
+AB*C-DEF*G/-+H+
+
+
+Justice Smith
+ju644888
+3218665
+
+DS B
+
+1.
+int next_up(node * root, int key)
+{
+    node * parent = NULL;
+    
+    while (root != NULL)
+    {
+        if (key < root->data)
+        {
+            parent = root;
+            root = root->left;
+        }
+        else if (key > root->data)
+        {
+            root = root->right;
+            _____________;
+        }
+        else
+        {
+            if (root->right == NULL)
+                return INT_MIN;
+            else if (parent != NULL)
+                return _____________;
+            else
+                return root->right;
+        }
+    }
+    
+    return INT_MIN;
+}
+
+2.
+a.
+    values: 1 2 3 4 5 6 7 8   
+b. 
+    values: 99 100 101 102 103 104 105 106
+c. 
+    not possible. The two guideline sets would contradict each other in
+    construction. If 14 is to be the largest element in the min-heap,
+    dictated by demanding the best-case runtime for insertion, then by
+    definition you could not also insert 98 and yield a worst-case runtime
+    for which 98 would have to be added to the root node. By definition
+    of a min heap, each parent must be lesser in value than both of its 
+    children. If 98 is the root, then 14 cannot be below it.
+    
+3.
+    Total number of nodes = 21
+    
+
+Justice Smith
+ju644888
+3218665
+
+AL A
+
+1.
+    best-case: O(n)
+    worst-case: O(nlog(n))
+    This is closest in implementation to a merge sort.
+    The return value of this function represents the sum of the elements
+        of the sublists.
+    
+    we get best-case of O(n) when the random element we choose is either
+    the smallest value in the list every time or the largest value in the 
+    list every time. This makes it so we are just summing the values in a
+    linear fashion.
+
+    we get worst-case of O(nlog(n)) when we choose the median value every 
+    time, splitting our sample space in exactly half each time. 
+    
+2. 
+    10ms = c(sqrt(8000000))
+    c = 10ms/(1000sqrt(8))
+    c = 1ms/(100sqrt(8))
+    c = 1ms/(200sqrt(2))
+    
+    40ms = sqrt(n)/(200sqrt(2))
+    8000sqrt(2) = sqrt(n)
+    64000000 * 2 = n
+    128000000 = n
+    
+    128 million items.
+    
+3. 
+      n^4
+    6*SUM i = 6 * (n^4(n^4 + 1))/2
+      i=0
+      
+            = 3 * (n^4)(n^4 + 1)
+            = 3n^8 + 3n^4
+
+
+Justice Smith
+ju644888
+3218665
+
+
+AL B
+
+1.
+int minPlayRec(int target, int low, int high)
+{
+    if (low == high) return low;
+    
+    int midTime = (low + high + 1) / 2;  
+    
+    if (f(midTime) < target)
+        return minPlayRec(target, midTime + 1, high);
+    else if (f(midTime) > target)
+        return minPlayRec(target, low, midTime)
+    else
+        return midTime;
+}
+      
+2.
+    idx:0  1  2  3  4  5  6  7
+    0   13 6  9 27  3 15  1 12 
+    1   6 13  9 27  3 15  1 12
+    2   6  9 13 27  3 15  1 12
+    3   3  6  9 13 27 15  1 12 
+    4   3  6  9 13 15 27  1 12
+    5   1  3  6  9 13 15 27 12
+    6   1  3  6  9 12 13 15 27
+    7   1  3  6  9 12 13 15 27
+    
+3.
+    
+int score(int preferences[], int applicant)
+{
+    int count = 0;
+    
+    for (count = 0; count < SIZE; i++)
+        if(((applicant>>preferences[count]) & 1) == 0) break;   
+    
+    return count;
+}
+

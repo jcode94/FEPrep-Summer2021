@@ -1,0 +1,189 @@
+// Justice Smith
+// ju644888
+// 3218665
+
+
+// DS A
+
+// 1. 
+//     Errors:
+//         - length not initialized to zero
+//         - malloced block should be of size length + 1 to accommodate ntc
+//         - didn't return string
+//         
+// 2. 
+// 
+struct node {
+    int data;
+    struct node * next;
+};
+
+int check_all_even(struct node * head)
+{
+    if (head == NULL) return 0; 
+    
+    if (head->data % 2 == 0)
+        if (head->next == NULL)
+            return 1;
+        else
+            return check_all_even(head->next);
+    else
+        return 0;    
+}
+
+// 3. 
+struct queue {
+    int * array;
+    int num_elements;
+    int front;
+    int capactiy;
+};
+
+cap = 5
+front = 0;
+num_elements = 0;
+* indicates the front element of the queue
+
+    1. 50* __ __ __ __
+    2. 50* 34 __ __ __
+    3. 50* 34 91 __ __
+    
+    x = 50
+    4. __ 34* 91 __ __
+    5. __ 34* 91 23 __
+    
+    y = 34
+    6. __ __ 91* 23 __
+    7. __ __ 91* 23 34
+    8. 15 __ 91* 23 34
+    9. 15 50 91* 23 34
+    
+    x = 50
+    10. 15 __ 91* 23 34
+    
+    
+// DS B
+
+// 1. 
+
+int find_below(node * root, int val)
+{   
+    int left, right;
+    
+    if (root == NULL) return val;
+    
+    if (root->left == NULL && root->right == NULL)
+        return root->data;
+    else if (root->left == NULL)
+        right = find_below(root->right);
+    else
+        left = find_below(root->left);
+        
+    if (left > right && left < val)
+        return left;
+    else if (right > left && right < val)
+        return right;
+    else
+        return val;
+    
+    return retVal;
+}
+
+
+int find_below(node * root, int val)
+{
+    int retVal = val;
+    int left, right;
+    
+    if (root == NULL) return val;
+    
+    left = find_below(root->left, val);
+    right = find_below(root->right, val);
+    
+    if (root->data < val && (root->data > retVal || retVal == val)) 
+        retVal = root->data;
+    if (left < val && (left > retVal || retVal == val)) retVal = left;
+    if (right < val && (right > retVal || retVal == val)) retVal = right;
+    
+    return retVal;
+}
+
+
+2. 
+
+            22
+          /    \
+        38      72
+       /  \    /  
+     90  40   80  
+     
+3. 
+
+int ends_with_q_count(TrieNode * root)
+{   
+    int count = 0;
+    
+    if (root == NULL) return 0;
+    
+    for (int i = 0; i < 26; i++)
+    {
+        count += ends_with_q_count(root->children[i]);
+        if (root->children['q' - 'a'] != 0)
+            return root->children['q' - 'a'];
+    }
+    
+    return count;
+}
+
+
+int ends_with_q_count(TrieNode * root)
+{
+    int i, numStrings = 0;
+    
+    if (root == NULL) return 0;
+    
+    for (i = 0; i < 26; ++i)
+        numStrings += ends_with_q_count(root->children[i]);
+    
+    if (root->children['q'-'a'] != NULL)
+        numStrings += root->children['q'-'a']->count;
+        
+    return numStrings;
+}
+
+
+Alg An A
+
+
+1. 
+
+answer: O(n^2)
+
+- strlen() runs in O(n) time, where n is the length of the string measured
+- the for-loop, in one iteration of the recursive hash function, runs in 
+    k time, where k is the remaining length of the string. 
+- because the k parameter is decremented on each call, we have the summation 
+    from 1 to n of i, which resolves to (n(n + 1))/2. 
+In conclusion, our raw runtime is n + (n(n + 1))/2, which resolves to a 
+big O runtime of n^2.
+
+
+2. 4.5s
+    
+3. recurrence
+
+1. hanoi
+
+2. 
+    a. best should store the index value of the largest value found so far
+    b. int temp = array[i];
+       array[i] = array[best];
+       array[best] = temp;
+       
+3. 
+int canWinNIM(int piles[], int numPiles)
+{   
+    if (numPiles == 0) return 0;
+    return (piles[numPiles - 1] ^ (canWinNIM(piles, numPiles - 1)))
+}
+
