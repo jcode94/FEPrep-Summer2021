@@ -1,0 +1,53 @@
+Justice Smith
+ju644888
+3218665
+
+AL B
+1.
+
+int search(int numbers[], int low, int high, int value)
+{
+    if (low == high)
+        if (numbers[low] != value) return -1;
+        else return low;
+    
+    int mid = (low + high) / 2;
+    
+    if (value < numbers[mid])
+        return search(numbers, low, mid - 1, value);
+        
+    else if (value > numbers[mid])
+        return search(numbers, mid + 1, high, value);
+        
+    else
+        return mid;  
+}
+
+1hr 39min
+
+2.
+a.
+in the worst case, quick sort runs more slowly than merge sort because of the 
+instability of the pivot selection, which can causes unnecessary comparisons on
+an array with many duplicates.
+
+b.
+"in place" means that the mechanical operations performed by partition are done
+without additional space requirements. A synonym for in place is "on line".
+
+
+3.
+if (k == SIZE)
+
+
+if (used[i]) continue;
+if (k > 0 && abs(perm[k - 1] - k) < 2) continue; // less than 2 squares away
+
+perm[k] = i;
+used[i] = 1;
+go(perm, k + 1, used);
+used[i] = 0;
+
+2hr 00min
+
+

@@ -1,0 +1,71 @@
+Justice Smith
+ju644888
+3218665
+
+DS A
+1.
+a.
+dataTOD * init_dataTOD(int sec, double val, char * name)
+{
+    dataTOD * newBuffer = malloc(sizeof(dataTOD));
+    
+    if (newBuffer == NULL)
+        return NULL; // Allocation failure
+    
+    newBuffer->seconds = sec;
+    newBuffer->data = val;
+    
+    newBuffer->dataName = malloc((strlen(name) + 1) * sizeof(char));
+    strcpy(dataName, name);
+    
+    return newBuffer;
+}
+b.
+void free_dataTOD(dataTOD * zapThis)
+{
+    free(zapThis->dataName);
+    free(zapThis);
+}
+
+6min 26s
+
+2.
+a. YES
+b. recursively reverses a linked list, returning a pointer to 
+   the head of the linked list.
+c. line 12 fixed the next pointer at the end of the sublist by
+   pointing it to NULL to indicate the end of the list/sublist
+   
+8min 14s
+
+3.
+int eval(int * expr, int len)
+{
+    stack s;
+    init(&s);
+    int i;
+    
+    for (i = 0; i < len; i++)
+    {
+        if (expr[i] == -1) // Addition
+        {
+            int op2 = pop(&s);
+            int op1 = pop(&s);
+            
+            push(&s, op1 + op2);
+        }    
+        else if (expr[i] == -2) // Subtraction
+        {
+            int op2 = pop(&s);
+            int op1 = pop(&s);
+            
+            push(&s, op1 - op2);
+        }
+        else // numeric
+            push(expr[i]);
+    }
+    
+    return pop(&s);   
+}
+
+18min 20s

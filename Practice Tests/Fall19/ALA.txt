@@ -1,0 +1,54 @@
+Justice Smith
+ju644888
+3218665
+
+1.
+a. O(n + m)
+b. O(nlog(n))
+c. O(n^2)
+d. O(1)
+e. O(m*log(n))
+f. O(p)
+g. O(n^2)
+h. O(b)
+i. O(n)
+j. O(n)
+
+1hr 03min 47s(+8min 17s)
+
+2.
+10ms = c * 10!
+10ms/10! = c
+c = 10ms/10!
+
+t = 10ms/10! * 12!
+
+t = 10ms * 132
+t = 1320ms
+
+t = 1.32s
+
+1hr 07min 18s(+2min 31s)
+
+3.
+T(n) = 2T(n - 1) + 2^n                    for all integers n >= 1, T(0) = 1     k = 0
+T(n) = 2[2T((n - 1) - 1) + 2^(n - 1)] + 2^n
+T(n) = 4T(n - 2) + 2^(n + 1)                                                    k = 1
+T(n) = 4[2T((n - 2) - 1) + 2^(n - 1) ] + 2^(n + 1)
+T(n) = 8T(n - 3) + 2^(n + 2)                                                    k = 2
+
+
+T(n) = 2^kT(n - (k + 1)) + 2^(n + k)
+n - (k + 1) = 0
+n = (k + 1)
+n - 1 = k
+
+2^(n - 1)T(n - n) + 2^(n + (n - 1))
+2^(n - 1) + 2^(2n - 1)
+
+1hr 18min 21s(+11min 3s)
+total: 22min 51s
+
+
+1hr 19min 40s
+

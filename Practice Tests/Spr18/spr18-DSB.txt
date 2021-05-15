@@ -1,0 +1,124 @@
+Justice Smith
+ju644888
+3218665
+
+DS B
+1.
+
+bstNode * find_min_leaf(bstNode * root)
+{
+    if (root == NULL) return NULL;
+    
+    bstNode * smallest = find_min_leaf(root->left);
+    
+    return (smallest == NULL) ? root->data : smallest;
+}
+
+35min 00s
+
+2.
+tree representation of heap:
+          2
+        /   \
+      16     3
+     / \     / \
+   22  17   12  13
+  /\   / \
+23 30 18 20
+
+
+after removing the min value:
+          3
+        /   \
+      16     12
+     / \     / \
+   22  17   20  13
+  /\   / 
+23 30 18 
+
+40min 00s
+
+3.
+
+insert(10):
+
+    10
+    
+insert(7):
+
+    10
+   /
+  7
+  
+insert(3):
+
+    7
+   / \
+  3   10
+  
+insert(22):
+
+    7
+   / \
+  3   10
+        \
+         22
+         
+insert(16):
+
+    7
+   / \
+  3   16
+     /  \
+   10    22  
+  
+insert(13):
+     
+     10
+   /   \
+  7     16
+ /     /  \
+3     13   22
+      
+insert(5):
+     
+     10
+   /    \
+  5      16
+ / \    /  \
+3   7  13   22
+
+insert(18):
+     
+     10
+   /    \
+  5      16
+ / \    /  \
+3   7  13   22
+            /
+          18
+          
+insert(20):
+     
+     10
+   /    \
+  5      16
+ / \    /  \
+3   7  13   20
+            / \
+          18   22
+          
+insert(19):
+            
+       16
+      /  \        
+    10    20
+   /  \   / \
+  5   13 18  22
+ / \      \
+3   7     19
+
+
+59min 00s
+
+
