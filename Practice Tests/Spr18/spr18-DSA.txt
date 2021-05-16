@@ -16,7 +16,7 @@ dataTOD * init_dataTOD(int sec, double val, char * name)
     newBuffer->data = val;
     
     newBuffer->dataName = malloc((strlen(name) + 1) * sizeof(char));
-    strcpy(dataName, name);
+    strcpy(newBuffer->dataName, name);
     
     return newBuffer;
 }
@@ -62,7 +62,7 @@ int eval(int * expr, int len)
             push(&s, op1 - op2);
         }
         else // numeric
-            push(expr[i]);
+            push(&s, expr[i]);
     }
     
     return pop(&s);   
