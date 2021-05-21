@@ -1,0 +1,133 @@
+Justice Smith
+ju644888
+3218665
+
+DS A
+1.
+app** makeAppArray(FILE* fp, int numApps)
+{
+	if (numApps == 0) return NULL:
+	
+	app** newAppArray = malloc(numApps*sizeof(app *));
+	int i;
+	
+	for (i = 0; i < numApps; i++)
+	{
+		newAppArray[i] = malloc((sizeof(app));
+		fscanf(fp, "%s %f", newAppArray[i]->name, &(newAppArray[i]->price));
+	}
+	
+	return newAppArray;
+}
+
+8min 44s
+
+2.
++----+   +----+   +----+   +----+   +----+   +----+   +----+
+| 26 |-->| 39 |-->| 26 |-->| 20 |-->| 26 |-->| 32 |-->| 39 |-->NULL
++----+   +----+   +----+   +----+   +----+   +----+   +----+
+  ^ head
+  
+Adjusted list:
++----+   +----+   +----+   +----+   +----+
+| 26 |-->| 39 |-->| 20 |-->| 32 |-->| 39 |-->NULL
++----+   +----+   +----+   +----+   +----+
+  ^ head
+  
+return value: 5
+
+14min 42s
+
+3.
+int enqueue(cQueue* thisQ, int item)
+{
+	if (size >= 20) return 0;
+	
+	thisQ[(thisQ->front+size)%20 +1] = item;
+	front = ++front % 20;
+	size++;
+	
+	return 1;
+}
+
+30ishmin on phone w DJ
+
+Justice Smith
+ju644888
+3218665
+
+DS B
+1.
+int countBefore(bsNode* root, char target[])
+{
+	if (root == NULL || (strcmp(root->word, target) > 0) return 0;
+	
+	return 1 + countBefore(root->left, target) + countBefore(root->right, target); 
+}
+
+time is kinda out the window, DJ has a lot to share
+
+2.
+a.
+you could return (score/4)%25. 
+The function would have collisions, especially because of unequal score spread.
+Essentially, we've compressed 4-element subgroups into single indices in the 25-element
+array. So any elements that share a range(e.g. 97-100 incl.) would hash to the same index
+in the 25-element array.
+
+b.
+index	value
+15		Mary
+18		Ben
+3		Dona
+
+3.
+a.
+
+	38
+   /  
+   
+	38
+   /  \   
+       72
+	   
+	58
+   /  \   
+ 38    72
+
+	 58
+    /  \   
+  38    72
+ /
+16
+
+	  38
+    /    \   
+  16      58
+ /  \      \
+3   24      72
+
+	  38
+    /    \   
+  16      58
+ /  \      \
+3   24      72
+ \
+  8
+  
+	      38
+        /    \   
+      16      58
+     /  \      \
+    8   24      72
+   / \
+  3   15
+  
+b.
+	      38
+        /    \   
+       8      58
+      / \       \
+     3   24      72
+         /
+        15

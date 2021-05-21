@@ -15,7 +15,7 @@ char ** makeTVList(FILE *ifp, int numShows)
 
 	for (i = 0; i < numShows; i++)
 	{
-		scanf("%s", buffer);
+		fscanf(ifp, "%s", buffer);
 		TVList[i] = (char *)malloc((strlen(buffer) + 1) * sizeof(char)):
 		strcpy(TVList[i], buffer);
 	}
@@ -27,6 +27,7 @@ char ** makeTVList(FILE *ifp, int numShows)
 int isFull(node *stack)
 {
 	if (stack == NULL) return NULL;
+	int i = 0;
 	
 	while (stack != NULL)
 	{
@@ -167,7 +168,7 @@ AL A
 Avg: 		Worst:
 
 O(1)		O(1)
-O(n)		O(n), each vs every??
+O(n*n!)		O(n*n!), each vs every??
 O(log(n))   O(n)
 O(log(n))   O(log(n))
 O(P + Q)    O(P + Q)

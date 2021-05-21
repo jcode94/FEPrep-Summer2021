@@ -1,0 +1,108 @@
+Justice Smith
+ju644888
+3218665
+
+DS A
+1.
+smart_string *create_smart_string(char *str)
+{
+	if (str == NULL) return NULL;
+	
+	int len = strlen(str);
+	smart_string *newSmartString = malloc(sizeof(smart_string));
+	
+	newSmartString->word = malloc((len+1)*sizeof(char));
+	strcpy(newSmartString->word, str);
+	newSmartString->length = len;
+	
+	return newSmartString;
+}
+
+smart_string *erase_smart_string(smart_string *s)
+{	
+	if (s == NULL) return NULL;
+
+	free(s->word);
+	free(s);
+	
+	return NULL;
+}
+
+2.           -----------------
+            |       ----------|----------------
+			|		|         v                v
++----+   +----+   +----+   +----+   +----+   +----+
+| 31 |-->| 27 |   | 84 |   | 50 |   | 40 |-->| 32 |-->NULL
++----+   +----+   +----+   +----+   +----+   +----+
+  ^ head            ^
+                    |---------|
+					
+
+
+3.
+
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+| * |   | ( |   | * |
+| + |   | + |   | + |
+-----   -----   -----
+
+Postfix expression: 14 18 9*+ 3- 4 8- 9 6-* 2/+
+Final Value of this postfix expression: 167
+
+
+1.
+int isLopsided(node *root)
+{
+	if (root == NULL) return 0;
+	return abs(sumNodes(root->left) - sumNodes(root->right)) > 1 ? 1 : 0;
+}
+
+int sumNodes(node *root)
+{
+	if (root == NULL) return 0;
+	return 1 + sumNodes(root->left) + sumNodes(root->right);
+}
+
+2.
+a.
+Yes, valid minheap
+0   1   2    3   4
+3  93  44  207  99
+
+2.
+         2
+	   /   \
+	  3     48
+	 / \   /  \
+   28  68 78  99
+  /
+48  
+
+3.
+int countOddStrings(TrieNode *root, int k)
+{
+	if (root == NULL) return 0;
+	int i, count = 0;
+	
+	// Traverse through each permuation, increasing the index by 1 each time
+	for (i = 0; i < 26; i++)
+		count += countOddStrings(root->children[i], k + 1);
+	
+	// either make count equal to count + root->flag or return count(depending on
+	// whether current number of letters(depth/height) is odd.
+	count += (k%2 == 1) ? root->flag : 0;
+
+	return count;
+}
+
+1.
+a. arr[11] = 4;
+b.
+
+	
+
+
+
+
